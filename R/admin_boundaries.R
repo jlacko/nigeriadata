@@ -1,19 +1,29 @@
-# ---- Ward Admin Boundaries
-ward_admin_boundaries <- function() {
-  #Pull data from eHealth Africa geoserver
-  data <- read.csv("https://gis-a.ie.ehealthafrica.org/geoserver/eHA_db/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=eHA_db:sv_wards&outputFormat=csv")
-  return(data)
-}
+#' Administrative boundaries
+#'
+#' This is a function returning admin area boundaries
+#'
+#' @param type one of
+#'
+#' @return data frame
+#' @export
+#' @importFrom magrittr %>%
+#' @importFrom sf st_as_sf
+#'
+#'
 
-# ---- LGA Admin boundaries
-lga_admin_boundaries <- function() {
-  data <- read.csv("https://gis-a.ie.ehealthafrica.org/geoserver/eHA_db/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=eHA_db:sv_local_government_areas&outputFormat=csv")
-  return(data)
-}
+admin_boundaries <- function(type) {
+  translator <- c("ward_admin_boundaries" = "sv_wards",
+                  "lga_admin_boundaries" = "sv_local_government_areas",
+                  "state_admin_boundaries" = "sv_states")
 
-# ----  State Administartive boundaries data
-state_admin_boundaries <- function() {
-  data <- read.csv("https://gis-a.ie.ehealthafrica.org/geoserver/eHA_db/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=eHA_db:sv_states&outputFormat=csv")
-  return(data)
-}
+  if(!type %in% names(translator)) stop("Unknown administrative area!")
 
+#  downloader(translator[type]) # commented out until certificate issue gets resolved
+
+  data <- read.csv("~/Downloads/sv_local_government_areas.csv", stringsAsFactors = F) %>%
+#    dplyr::select(-FID, -timestamp) %>%
+    sf::st_as_sf(wkt = "geom", crs = 4326)
+
+  data
+
+}
