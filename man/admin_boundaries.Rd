@@ -15,3 +15,9 @@ data frame
 \description{
 This is a function returning admin area boundaries
 }
+\examples{
+
+plot(admin_boundaries("state"), max.plot = 1)
+
+
+}
