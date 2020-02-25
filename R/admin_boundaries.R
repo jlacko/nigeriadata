@@ -6,27 +6,27 @@
 #'
 #' @return data frame
 #' @export
-#' @importFrom magrittr %>%
-#' @importFrom sf st_as_sf
 #'
 #' @examples
 #'
-#' plot(admin_boundaries("state"), max.plot = 1)
+#' states <- areas("state")
+#' plot(sf::st_geometry(states))
 #'
 #'
 
-admin_boundaries <- function(type) {
+areas <- function(type) {
+
+  # translation from argument type to file names on Geoserver
   translator <- c("ward" = "sv_wards",
                   "lga" = "sv_local_government_areas",
                   "state" = "sv_states")
 
+
+  if(length(type) != 1) stop("A single type of admin area is required !")
+
   if(!type %in% names(translator)) stop("Unknown administrative area!")
 
-#  downloader(translator[type]) # commented out until certificate issue gets resolved
-
-  data <- read.csv("~/Downloads/sv_states.csv", stringsAsFactors = F) %>%
-    dplyr::select(-"FID", -"timestamp") %>%
-    sf::st_as_sf(wkt = "geom", crs = 4326)
+  data <- downloader(translator[type]) # beware! type is hardcoded to states
 
   data
 

@@ -1,12 +1,16 @@
 Package: nigeriadata
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Nigerian Spatial Data
 Version: 0.1.1
-Author: Joseph Oladokun
-Maintainer: Joseph Oladokun <oladokunjoseph2@gmail.com>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: TBD
+Author: 
+    Joseph Oladokun,
+    Denis Irorere,
+    Jindra Lacko
+Maintainer: 
+    Joseph Oladokun <oladokunjoseph2@gmail.com>
+Description: 
+    A set of data objects relevant to the Republic of Nigeria.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends:
@@ -16,4 +20,7 @@ Imports:
     dplyr,
     curl,
     httr
-RoxygenNote: 7.0.2
+RoxygenNote: 
+    7.0.2
+Suggests: 
+    testthat (>= 2.1.0)
