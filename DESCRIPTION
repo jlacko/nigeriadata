@@ -17,7 +17,6 @@ Depends:
     sf
 Imports:
     magrittr,
-    dplyr,
     curl,
     httr
 RoxygenNote: 

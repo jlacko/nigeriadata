@@ -34,7 +34,7 @@ downloader <- function(file) {
   } # /if - local file exists
 
   local_df <- read.csv(local_file, stringsAsFactors = F) %>%
-    dplyr::select(-"FID", -"timestamp") %>%
+    subset(select = setdiff(colnames(.), c("FID", "timestamp"))) %>%
     sf::st_as_sf(wkt = "geom", crs = 4326)
 
   local_df
