@@ -10,10 +10,10 @@ downloader <- function(file) {
 
   remote_path <- "https://gis-a.ie.ehealthafrica.org/geoserver/eHA_db/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=eHA_db:" # remote archive
 
-  remote_file <- paste0(remote_path, file, "&outputFormat=csv") # path to Geoserver
-#  local_file <- paste0(tempdir(), "/", file, ".csv") # local file - in tempdir
+  remote_file <- paste0(remote_path, file) # path to Geoserver
+#  local_file <- paste0(tempdir(), "/", file, ".xml") # local file - in tempdir
 
-  local_file <- "~/Downloads/sv_states.csv" # beware! for dev purposes only...
+  local_file <- "~/Downloads/states.xml" # beware! for dev purposes only...
 
   if (file.exists(local_file)) {
     message("Using temporary local dataset.")
@@ -33,9 +33,8 @@ downloader <- function(file) {
     curl::curl_download(url = remote_file, destfile = local_file, quiet = F)
   } # /if - local file exists
 
-  local_df <- read.csv(local_file, stringsAsFactors = F) %>%
-    subset(select = setdiff(colnames(.), c("FID", "timestamp"))) %>%
-    sf::st_as_sf(wkt = "geom", crs = 4326)
+  local_df <- sf::st_read(local_file, stringsAsFactors = F, quiet = T) %>%
+    subset(select = setdiff(colnames(.), c("gml_id", "timestamp")))
 
   local_df
 } # /function
