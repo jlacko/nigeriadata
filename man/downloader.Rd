@@ -2,7 +2,7 @@
 % Please edit documentation in R/downloader.R
 \name{downloader}
 \alias{downloader}
-\title{Internal function - generic downloader, used to serve the data files}
+\title{Downloader}
 \usage{
 downloader(file)
 }

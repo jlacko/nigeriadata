@@ -1,19 +1,24 @@
+#' Downloader
+#'
 #' Internal function - generic downloader, used to serve the data files
 #'
 #' @param file file to be downloaded (or not...)
 #' @keywords internal
-#' @importFrom utils read.csv
 #' @importFrom magrittr %>%
 #' @importFrom sf st_as_sf
+#'
+
 
 downloader <- function(file) {
 
   remote_path <- "https://gis-a.ie.ehealthafrica.org/geoserver/eHA_db/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=eHA_db:" # remote archive
 
   remote_file <- paste0(remote_path, file) # path to Geoserver
-#  local_file <- paste0(tempdir(), "/", file, ".xml") # local file - in tempdir
+  local_file <- paste0(tempdir(), "/", file, ".xml") # local file - in tempdir
 
-  local_file <- "~/Downloads/states.xml" # beware! for dev purposes only...
+  # watch out! for dev purposes only - copy a valid file from downloads
+  file.copy(from = paste0("~/Downloads", "/", file, ".xml"),
+            to = paste0(tempdir(), "/", file, ".xml"))
 
   if (file.exists(local_file)) {
     message("Using temporary local dataset.")

@@ -17,7 +17,7 @@
 #'
 #' @examples
 #' states <- areas("state")
-#' plot(sf::st_geometry(states))
+#' plot(sf::st_geometry(state))
 #'
 
 

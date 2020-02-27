@@ -1,6 +1,6 @@
 test_that("nonsense gets caught", {
   expect_error(areas("asdf")) # not a valid administrative area
-  expect_error(areas(c("state", "lga"))) # a single argument is required
+  expect_error(areas(c("states", "lga"))) # a single argument is required
 })
 
 
@@ -23,6 +23,6 @@ test_that("LGAs are OK", {
 test_that("wards are OK", {
   expect_true(is.data.frame(areas("ward")))
   expect_s3_class(areas("ward"), "sf")
-  expect_equal(nrow(areas("ward")), 8809)
+  expect_equal(nrow(areas("ward")), 9537)
   expect_equal(st_crs(areas("ward"))$epsg, 4326)
 })
