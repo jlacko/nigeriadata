@@ -3,10 +3,10 @@
 #' Function returning local administrative area boundaries in {sf} package format.
 #'
 #' Recognized administrative areas are:
-#'  \describe{
-#'   \item{state}{States of Nigeria.}
-#'   \item{lga}{Local Government Areas of Nigeria.}
-#'   \item{ward}{Wards of Nigeria.}
+#' \itemize{
+#'   \item{"state"} {States of Nigeria.}
+#'   \item{"lga"} {Local Government Areas of Nigeria.}
+#'   \item{"ward"} {Wards of Nigeria.}
 #' }
 #'
 #' @param type one of "ward", "lga" and "state"
@@ -16,7 +16,6 @@
 #' @export
 #'
 #' @examples
-#'
 #' states <- areas("state")
 #' plot(sf::st_geometry(states))
 #'
