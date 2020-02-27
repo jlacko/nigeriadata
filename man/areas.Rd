@@ -3,22 +3,32 @@
 \name{areas}
 \alias{areas}
 \title{Administrative boundaries}
+\source{
+\url{https://www.ehealthafrica.org/}
+}
 \usage{
 areas(type)
 }
 \arguments{
-\item{type}{one of}
+\item{type}{one of "ward", "lga" and "state"}
 }
 \value{
-data frame
+data frame in \code{sf} package format
 }
 \description{
-This is a function returning admin area boundaries
+This is a function returning local administrative area boundaries in {sf} package format.
+}
+\details{
+Recognized administrative areas are:
+ \describe{
+  \item{state}{States of Nigeria.}
+  \item{lga}{Local Government Areas of Nigeria.}
+  \item{ward}{Wards of Nigeria.}
+}
 }
 \examples{
 
 states <- areas("state")
 plot(sf::st_geometry(states))
-
 
 }
